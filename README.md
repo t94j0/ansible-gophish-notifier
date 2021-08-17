@@ -1,6 +1,8 @@
 Ansible - GoPhish Notifier
 =========
 
+[![t94j0.gophish_notifier](https://img.shields.io/ansible/role/55987)](https://galaxy.ansible.com/t94j0/gophish_notifier)
+
 Install [GoPhish Notifier](https://github.com/t94j0/gophish-notifier)
 
 Role Variables
