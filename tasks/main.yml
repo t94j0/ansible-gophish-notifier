@@ -4,6 +4,11 @@
     that:
       - config is defined
 
+- name: Install dependencies
+  apt:
+    name: tar
+    state: present
+
 - name: Download GoPhish Notifier asset
   ansible.builtin.get_url:
     url: "{{ github_asset_url }}"
