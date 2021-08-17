@@ -1,0 +1,47 @@
+---
+- name: assert mandatory variables
+  assert:
+    that:
+      - config is defined
+
+- name: Download GoPhish Notifier asset
+  ansible.builtin.get_url:
+    url: "{{ github_asset_url }}"
+    dest: /tmp/assets.tar.gz
+    mode: 0644
+
+- name: Unarchive asset
+  ansible.builtin.unarchive:
+    src: /tmp/assets.tar.gz
+    dest: /usr/sbin/
+    remote_src: true
+    mode: 0755
+    extra_opts:
+      - "gophish-notifier"
+
+- name: Install GoPhish Notifier service file
+  ansible.builtin.copy:
+    src: ./files/gophish-notifier.service
+    dest: /lib/systemd/system/gophish-notifier.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create config directory
+  ansible.builtin.file:
+    path: /etc/gophish_notifier/
+    state: directory
+    mode: 0755
+
+- name: Template config file
+  ansible.builtin.copy:
+    content: "{{ config | to_yaml }}"
+    dest: /etc/gophish_notifier/config.yml
+    mode: 0644
+
+- name: Enable and start GoPhish Notifier service
+  ansible.builtin.systemd:
+    name: gophish-notifier
+    state: started
+    daemon_reload: true
+    enabled: true

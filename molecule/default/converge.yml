@@ -1,0 +1,16 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include install_gophish_notifier"
+      include_role:
+        name: "install_gophish_notifier"
+      vars:
+        config:
+          secret: abc123
+          base_url: https://localhost:3333
+          profiles:
+            - slack
+          slack:
+            webhook: https://slack.com
+            bot_channel: '#testing'

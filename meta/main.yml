@@ -1,0 +1,23 @@
+galaxy_info:
+  role_name: gophish_notifier
+  namespace: t94j0
+  author: Maxwell Harley
+  description: Install gophish-notifier
+  company: SpecterOps
+
+  # If the issue tracker for your role is not on github, uncomment the
+  # next line and provide a value
+  issue_tracker_url: https://github.com/t94j0/gophish-notifier/issues
+
+  license: MIT
+
+  min_ansible_version: 2.1
+
+  platforms:
+  - name: Debian
+    versions:
+    - buster
+
+  galaxy_tags: []
+
+dependencies: []

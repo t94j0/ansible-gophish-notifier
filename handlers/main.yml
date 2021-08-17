@@ -1,0 +1,5 @@
+---
+- name: Restart gophish-notifier
+  ansible.builtin.service:
+    name: gophish-notifier
+    state: restarted
